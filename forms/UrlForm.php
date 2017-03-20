@@ -2,10 +2,10 @@
 
 namespace app\forms;
 
+use app\models\Url;
 use app\validators\UrlValidator;
-use yii\base\Model;
 
-class UrlForm extends Model
+class UrlForm extends \yii\base\Model
 {
     public $long_url;
     public $desired_short_url;
@@ -27,5 +27,10 @@ class UrlForm extends Model
         if (!$this->validate()) {
             return false;
         }
+
+        $url = new Url();
+        $url->long_url = $this->long_url;
+        $url->short_url = $this->long_url;
+        return $url->save();
     }
 }

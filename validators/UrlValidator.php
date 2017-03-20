@@ -32,7 +32,12 @@ class UrlValidator extends Validator
     {
         try {
             $client = new Client();
-            $response = $client->get($url)->send();
+            $client->setTransport(\yii\httpclient\CurlTransport::class);
+            $response = $client->get($url)->setOptions([
+                CURLOPT_CONNECTTIMEOUT => 10,
+                CURLOPT_TIMEOUT => 10,
+                CURLOPT_NOBODY => true,
+            ])->send();
 
             if ($response->isOk) {
                 return true;

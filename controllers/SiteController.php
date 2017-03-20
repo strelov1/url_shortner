@@ -64,8 +64,8 @@ class SiteController extends Controller
         $urlForm = new UrlForm();
         $request = Yii::$app->request;
 
-        if ($urlForm->load($request->post()) && $urlForm->validate()) {
-
+        if ($urlForm->load($request->post()) && $urlForm->save()) {
+            Yii::$app->session->setFlash('success', 'Success');
         }
 
         return $this->render('index', [
