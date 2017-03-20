@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\behaviors\CounterBehavior;
 use app\behaviors\ExpiredBehavior;
 use Yii;
 
@@ -20,6 +21,7 @@ class Url extends \yii\db\ActiveRecord
     {
         return [
             ExpiredBehavior::className(),
+            CounterBehavior::className(),
         ];
     }
 

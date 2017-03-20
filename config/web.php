@@ -46,6 +46,11 @@ $config = [
             'rules' => [
             ],
         ],
+        'shorter' => [
+            'class' => \app\components\Shorter::class,
+            'beginBit' => 1,
+            'chars' => '0123456789abcdfe',
+        ]
     ],
     'params' => $params,
 ];

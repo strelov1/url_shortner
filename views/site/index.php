@@ -19,13 +19,20 @@ $this->title = Yii::$app->name;
             <div class="col-lg-6">
                 <?= $form->field($urlForm, 'long_url')->textInput(['autofocus' => true]) ?>
             </div>
+            <?php /*
             <div class="col-lg-6">
                 <?= $form->field($urlForm, 'desired_short_url')->textInput() ?>
             </div>
+            */
+            ?>
+            <div class="col-lg-6">
+                <?= $form->field($urlForm, 'short_url')->textInput() ?>
 
-            <div class="form-group">
-                <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                <div class="form-group">
+                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+                </div>
             </div>
+
 
             <?php ActiveForm::end(); ?>
         </div>
