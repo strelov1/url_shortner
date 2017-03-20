@@ -16,6 +16,9 @@ class ExpiredBehavior extends \yii\base\Behavior
         ];
     }
 
+    /**
+     * Install expired day to Url model
+     */
     public function beforeInsert()
     {
         $expired_days = \Yii::$app->params['expired_days'];

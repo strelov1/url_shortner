@@ -44,6 +44,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'GET /<url:\w+>' => 'site/match',
             ],
         ],
         'shorter' => [

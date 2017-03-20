@@ -15,8 +15,11 @@ class CounterBehavior extends \yii\base\Behavior
         ];
     }
 
+    /**
+     * Update counter
+     */
     public function afterInsert()
     {
-        UrlCounter::updateAllCounters(['value' => 1], ['id' => 1]);
+        UrlCounter::updateAllCounters(['value' => 1], ['id' => UrlCounter::URL_COUNTER]);
     }
 }

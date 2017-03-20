@@ -9,10 +9,6 @@ namespace app\models;
  */
 class UrlQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
 
     /**
      * @inheritdoc
@@ -30,5 +26,22 @@ class UrlQuery extends \yii\db\ActiveQuery
     public function one($db = null)
     {
         return parent::one($db);
+    }
+
+    /**
+     * @param $hash
+     * @return $this
+     */
+    public function matchUrl($hash)
+    {
+        return $this->where(['short_url' => $hash]);
+    }
+
+    /**
+     * @return $this
+     */
+    public function notExpired()
+    {
+        return $this->where(['>', 'expired_at', time()]);
     }
 }
