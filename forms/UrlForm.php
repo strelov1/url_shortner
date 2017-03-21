@@ -20,7 +20,7 @@ class UrlForm extends \yii\base\Model
             ['long_url', 'required'],
             ['long_url', 'url'],
             ['long_url', UrlValidator::className()],
-            //['long_url', 'exist', 'targetClass' => Url::className()]
+            ['long_url', 'exist', 'targetClass' => Url::className()]
         ];
     }
 
@@ -30,15 +30,22 @@ class UrlForm extends \yii\base\Model
             return false;
         }
 
+        $shortUrl = $this->getShortUrl();
+        $this->setShortUrl($shortUrl);
+
         $url = new Url();
         $url->long_url = $this->long_url;
-        $url->short_url = $this->shortUrl();
-        $this->short_url = \yii\helpers\Url::to($url->short_url, true);
+        $url->short_url = $shortUrl;
+
         return $url->save();
     }
 
+    public function setShortUrl($url)
+    {
+        $this->short_url = \yii\helpers\Url::to($url, true);
+    }
 
-    public function shortUrl()
+    public function getShortUrl()
     {
         return \Yii::$app->shorter->create();
     }

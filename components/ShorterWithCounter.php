@@ -4,9 +4,9 @@ namespace app\components;
 
 use app\models\UrlCounter;
 
-class Shorter extends \yii\base\Component
+class ShorterWithCounter extends \yii\base\Component implements ShorterInterface
 {
-    public $beginBit;
+    public $beginBit = 1;
     public $chars;
 
     public function create()

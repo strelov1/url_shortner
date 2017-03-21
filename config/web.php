@@ -36,6 +36,10 @@ $config = [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning', 'info'],
+                ],
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
@@ -44,13 +48,19 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'GET /<url:\w+>' => 'site/match',
+                'GET /<url:[a-zA-Z0-9-]+>' => 'site/match',
             ],
         ],
+        /* Укорачиватель ссылок на основе счетчика
         'shorter' => [
-            'class' => \app\components\Shorter::class,
+            'class' => \app\components\ShorterWithCounter::class,
             'beginBit' => 1,
-            'chars' => '0123456789abcdfe',
+            'chars' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        ],
+        */
+        'shorter' => [
+            'class' => \app\components\ShorterRand::class,
+            'length' => 6
         ]
     ],
     'params' => $params,
