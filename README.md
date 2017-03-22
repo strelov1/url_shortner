@@ -26,3 +26,21 @@ docker-compose up -d
 ```
 http://localhost:8080
 ```
+
+API
+============================
+
+#Create Short URL
+``` 
+curl -H "Content-Type: application/json" X POST -d '{"long_url":"https://geektimes.ru/company/waves/blog/282356/"}' http://localhost:8080/api/v1/create
+curl -H "Content-Type: application/json" X POST -d '{"long_url":"https://geektimes.ru/company/waves/blog/282356/", "save":"true"}' http://localhost:8080/api/v1/create
+curl -H "Content-Type: application/json" X POST -d '{"long_url":"https://geektimes.ru/company/waves/blog/2823563/", "short_url":"geektimes"}' http://localhost:8080/api/v1/create
+curl -H "Content-Type: application/json" X POST -d '{"long_url":"https://geektimes.ru/company/waves/blog/2823563/", "short_url":"geektimes", "save":"true"}' http://localhost:8080/api/v1/create
+```
+
+#Stats
+```
+GET /api/v1/stats
+curl -H "Content-Type: application/json" http://localhost:8080/api/v1/stats
+```
+

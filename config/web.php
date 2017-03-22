@@ -6,7 +6,12 @@ $config = [
     'id' => 'basic',
     'name' => 'Url Shortner',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'api1'],
+    'modules' => [
+        'api1' => [
+            'class' => \app\modules\api1\Module::class,
+        ],
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -32,13 +37,16 @@ $config = [
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
-                [
+                'application' => [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
-                [
+                'shorter' => [
                     'class' => 'yii\log\FileTarget',
+                    'categories' => ['shorter'],
                     'levels' => ['error', 'warning', 'info'],
+                    'logVars' => [],
+                    'logFile' => '@runtime/logs/shorter.log',
                 ],
             ],
         ],
@@ -49,6 +57,8 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'GET /stats' => 'site/stats',
+                'POST /api/v1/create' => 'api1/rest/create',
+                '/api/v1/stats' => 'api1/rest/stats',
                 'GET /<url:[a-zA-Z0-9-]+>' => 'site/match',
             ],
         ],
