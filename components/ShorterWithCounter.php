@@ -7,7 +7,7 @@ use app\models\UrlCounter;
 class ShorterWithCounter extends \yii\base\Component implements ShorterInterface
 {
     public $beginBit = 1;
-    public $chars;
+    public $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
     public function create()
     {

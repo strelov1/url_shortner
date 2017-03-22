@@ -6,7 +6,7 @@ use app\forms\UrlForm;
 use yii\httpclient\Client;
 use yii\validators\Validator;
 
-class UrlValidator extends Validator
+class UrlResponseValidator extends Validator
 {
     public function validateAttribute($model, $attribute)
     {
@@ -25,6 +25,8 @@ class UrlValidator extends Validator
     }
 
     /**
+     * Check HTTP-response
+     *
      * @param $url
      * @return bool
      */

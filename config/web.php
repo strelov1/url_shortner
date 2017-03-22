@@ -55,7 +55,7 @@ $config = [
         'shorter' => [
             'class' => \app\components\ShorterWithCounter::class,
             'beginBit' => 1,
-            'chars' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            'chars' => 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
         ],
         */
         'shorter' => [

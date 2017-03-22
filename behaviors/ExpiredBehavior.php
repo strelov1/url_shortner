@@ -18,6 +18,7 @@ class ExpiredBehavior extends \yii\base\Behavior
 
     /**
      * Install expired day to Url model
+     * @throws InvalidValueException
      */
     public function beforeInsert()
     {

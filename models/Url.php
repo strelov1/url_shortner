@@ -21,7 +21,8 @@ class Url extends \yii\db\ActiveRecord
     {
         return [
             ExpiredBehavior::className(),
-            CounterBehavior::className(),
+            // Counter for url-shorter with Counter
+            // CounterBehavior::className(),
         ];
     }
 
@@ -58,6 +59,14 @@ class Url extends \yii\db\ActiveRecord
             'short_url' => Yii::t('app', 'Short Url'),
             'expired_at' => Yii::t('app', 'Expired At'),
         ];
+    }
+
+    /**
+     * @return bool
+     */
+    public function isExpired()
+    {
+        return $this->expired_at < time();
     }
 
     /**

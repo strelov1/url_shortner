@@ -3,12 +3,11 @@
 namespace app\forms;
 
 use app\models\Url;
-use app\validators\UrlValidator;
+use app\validators\UrlResponseValidator;
 
 class UrlForm extends \yii\base\Model
 {
     public $long_url;
-    public $desired_short_url;
     public $short_url;
 
     /**
@@ -19,34 +18,45 @@ class UrlForm extends \yii\base\Model
         return [
             ['long_url', 'required'],
             ['long_url', 'url'],
-            ['long_url', UrlValidator::className()],
-            ['long_url', 'exist', 'targetClass' => Url::className()]
+            ['short_url', 'filter', 'filter' => [$this, 'urlFilter']],
+            ['long_url', UrlResponseValidator::className()],
+            ['long_url', 'unique', 'targetClass' => Url::className()],
+            ['short_url', 'unique', 'targetClass' => Url::className()]
         ];
     }
 
+    public function urlFilter($value)
+    {
+        $path = parse_url($value, PHP_URL_PATH);
+        return str_replace('/', '', $path);
+    }
+
+    /**
+     * Save for storage
+     * @return bool
+     */
     public function save()
     {
         if (!$this->validate()) {
             return false;
         }
 
-        $shortUrl = $this->getShortUrl();
-        $this->setShortUrl($shortUrl);
-
         $url = new Url();
         $url->long_url = $this->long_url;
-        $url->short_url = $shortUrl;
+        $url->short_url = $this->short_url;
 
-        return $url->save();
+        if (!$url->save()) {
+            $this->addError('long_url', 'Save Error');
+            return false;
+        }
+        return true;
     }
 
-    public function setShortUrl($url)
+    /**
+     * @return mixed
+     */
+    public function initShortUrl()
     {
-        $this->short_url = \yii\helpers\Url::to($url, true);
-    }
-
-    public function getShortUrl()
-    {
-        return \Yii::$app->shorter->create();
+        $this->short_url = \Yii::$app->shorter->create();
     }
 }
