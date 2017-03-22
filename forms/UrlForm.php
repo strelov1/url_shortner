@@ -18,7 +18,10 @@ class UrlForm extends \yii\base\Model
         return [
             ['long_url', 'required'],
             ['long_url', 'url'],
+            [['long_url', 'short_url'], 'string', 'max' => 255],
+
             ['short_url', 'filter', 'filter' => [$this, 'urlFilter']],
+
             ['long_url', UrlResponseValidator::className()],
             ['long_url', 'unique', 'targetClass' => Url::className()],
             ['short_url', 'unique', 'targetClass' => Url::className()]

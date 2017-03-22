@@ -10,6 +10,7 @@ use Yii;
  * This is the model class for table "url".
  *
  * @property integer $id
+ * @property integer $counter
  * @property string $long_url
  * @property string $short_url
  * @property integer $expired_at
@@ -41,7 +42,7 @@ class Url extends \yii\db\ActiveRecord
     {
         return [
             [['long_url', 'short_url'], 'required'],
-            [['expired_at'], 'integer'],
+            [['expired_at', 'counter'], 'integer'],
             [['long_url', 'short_url'], 'string', 'max' => 255],
             [['long_url'], 'unique'],
             [['short_url'], 'unique'],
@@ -55,6 +56,7 @@ class Url extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'counter' => Yii::t('app', 'Counter'),
             'long_url' => Yii::t('app', 'Long Url'),
             'short_url' => Yii::t('app', 'Short Url'),
             'expired_at' => Yii::t('app', 'Expired At'),
@@ -67,6 +69,20 @@ class Url extends \yii\db\ActiveRecord
     public function isExpired()
     {
         return $this->expired_at < time();
+    }
+
+    /**
+     * Counter redirect
+     * @return bool
+     */
+    public function counted()
+    {
+        if ($this->counter === null) {
+            $this->counter = 1;
+            return $this->save(false);
+        } else {
+            return $this->updateCounters(['counter' => 1]);
+        }
     }
 
     /**

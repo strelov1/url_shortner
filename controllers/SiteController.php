@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Url;
 use app\forms\UrlForm;
+use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
 use yii\db\StaleObjectException;
 use yii\web\NotFoundHttpException;
@@ -87,9 +88,26 @@ class SiteController extends \yii\web\Controller
         }
 
         if ($matchUrl) {
+            $matchUrl->counted();
             $this->redirect($matchUrl->long_url)->send();
             return true;
         }
+    }
+
+
+    public function actionStats()
+    {
+
+        $provider = new ActiveDataProvider([
+            'query' => Url::find(),
+            'pagination' => [
+                'pageSize' => 50,
+            ],
+        ]);
+
+        return $this->render('stats', [
+            'dataProvider' => $provider
+        ]);
     }
 
 }

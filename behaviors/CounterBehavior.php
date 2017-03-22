@@ -5,6 +5,11 @@ namespace app\behaviors;
 use app\models\UrlCounter;
 use yii\db\ActiveRecord;
 
+/**
+ * Counter added url from ShorterWithCounter insted COUNT()
+ * Class CounterBehavior
+ * @package app\behaviors
+ */
 class CounterBehavior extends \yii\base\Behavior
 {
 

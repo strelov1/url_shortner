@@ -48,6 +48,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'GET /stats' => 'site/stats',
                 'GET /<url:[a-zA-Z0-9-]+>' => 'site/match',
             ],
         ],
