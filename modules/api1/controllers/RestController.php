@@ -5,21 +5,23 @@ namespace app\modules\api1\controllers;
 use app\models\Url;
 use app\forms\UrlForm;
 use yii\data\ActiveDataProvider;
-use yii\rest\Controller;
 
 /**
  * Default controller for the `api1` module
  */
-class RestController extends Controller
+class RestController extends \yii\rest\Controller
 {
     /**
-     * @param $long_url
-     * @param $short_url
-     * @param $save
      * @return UrlForm
      */
-    public function actionCreate($long_url, $short_url = null, $save = null)
+    public function actionCreate()
     {
+        $post = \Yii::$app->request;
+
+        $long_url = $post->post('long_url');
+        $short_url = $post->post('short_url');
+        $save = $post->post('save');
+
         $urlForm = new UrlForm();
         $urlForm->long_url = $long_url;
 
