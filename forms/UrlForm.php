@@ -52,6 +52,7 @@ class UrlForm extends \yii\base\Model
             $this->addError('long_url', 'Save Error');
             return false;
         }
+        Yii::info("Save short url {$this->short_url} from logn_url {$this->long_url}", 'shorter');
         return true;
     }
 
@@ -61,5 +62,6 @@ class UrlForm extends \yii\base\Model
     public function initShortUrl()
     {
         $this->short_url = \Yii::$app->shorter->create();
+        Yii::info("Genreated short url {$this->short_url} from logn_url {$this->long_url}", 'shorter');
     }
 }
