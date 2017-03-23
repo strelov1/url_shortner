@@ -25,6 +25,11 @@ composer install
 docker-compose up -d
 ```
 
+#Rum db migrations
+```
+docker-compose exec php php yii migrate
+```
+
 #Browse url
 ```
 http://localhost:8080
