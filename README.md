@@ -1,6 +1,9 @@
 URL Shortner
 ============================
 
+DEMO
+[http://url_shortner.raketa.guru/](http://url_shortner.raketa.guru/)
+
 INSTALLATION
 ------------
 
