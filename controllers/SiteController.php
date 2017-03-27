@@ -79,16 +79,20 @@ class SiteController extends \yii\web\Controller
             ->one();
 
         if ($matchUrl === null) {
+            Yii::error("Not found short url {$url}", 'shorter');
             throw new NotFoundHttpException('Not found short url');
         }
 
         if ($matchUrl->isExpired()) {
+            Yii::error("Expire short url {$url}", 'shorter');
             $matchUrl->delete();
+            Yii::error("Delete expire short url {$url}", 'shorter');
             throw new NotFoundHttpException('Short url is expired');
         }
 
         if ($matchUrl) {
             $matchUrl->counted();
+            Yii::info("Redirect short url {$url}", 'shorter');
             $this->redirect($matchUrl->long_url, 301)->send();
             return true;
         }

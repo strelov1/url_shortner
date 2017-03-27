@@ -1,6 +1,9 @@
 URL Shortner
 ============================
 
+DEMO
+[http://url_shortner.raketa.guru/](http://url_shortner.raketa.guru/)
+
 INSTALLATION
 ------------
 
@@ -20,6 +23,11 @@ composer install
 #Run docker
 ```
 docker-compose up -d
+```
+
+#Rum db migrations
+```
+docker-compose exec php php yii migrate
 ```
 
 #Browse url
