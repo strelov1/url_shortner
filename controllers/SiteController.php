@@ -50,12 +50,10 @@ class SiteController extends \yii\web\Controller
         $request = Yii::$app->request;
         $urlForm = new UrlForm();
 
-        if ($request->isPjax && $urlForm->load($request->post())) {
-            $urlForm->initShortUrl();
-        }
+        $urlForm->initShortUrl();
 
         // Save result
-        if (!$request->isPjax && $urlForm->load($request->post()) && $urlForm->validate()) {
+        if ($urlForm->load($request->post()) && $urlForm->validate()) {
             $urlForm->save();
         }
 

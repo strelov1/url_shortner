@@ -30,11 +30,6 @@ $this->title = Yii::$app->name;
                     <?= Html::submitButton('Get Short Url', [
                         'class' => 'btn btn-primary',
                     ]) ?>
-                    <?= Html::button('Save', [
-                        'id' => 'save_url',
-                        'onclick' => 'save()',
-                        'class' => 'btn btn-success',
-                    ]) ?>
                 </div>
             </div>
         </div>
@@ -43,10 +38,3 @@ $this->title = Yii::$app->name;
         <?php Pjax::end(); ?>
     </div>
 </div>
-<script>
-    function save() {
-        $('#url-form').removeAttr("data-pjax");
-        $('#url-form').submit();
-        //$.post('/', $('#url-form').serialize());
-    }
-</script>

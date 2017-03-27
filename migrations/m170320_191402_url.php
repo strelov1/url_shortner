@@ -8,7 +8,7 @@ class m170320_191402_url extends Migration
     {
         $this->createTable('{{%url}}', [
             'id' => $this->primaryKey(),
-            'long_url' => $this->string()->notNull()->unique(),
+            'long_url' => $this->string()->notNull(),
             'short_url' => $this->string()->notNull()->unique(),
             'expired_at' => $this->integer()->notNull(),
         ]);
