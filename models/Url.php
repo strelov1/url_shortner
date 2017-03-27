@@ -44,7 +44,6 @@ class Url extends \yii\db\ActiveRecord
             [['long_url', 'short_url'], 'required'],
             [['expired_at', 'counter'], 'integer'],
             [['long_url', 'short_url'], 'string', 'max' => 255],
-            [['long_url'], 'unique'],
             [['short_url'], 'unique'],
         ];
     }

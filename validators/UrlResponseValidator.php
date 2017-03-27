@@ -39,6 +39,7 @@ class UrlResponseValidator extends Validator
                 CURLOPT_CONNECTTIMEOUT => 10,
                 CURLOPT_TIMEOUT => 10,
                 CURLOPT_NOBODY => true,
+                CURLOPT_FOLLOWLOCATION => true,
             ])->send();
 
             if ($response->isOk) {

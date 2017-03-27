@@ -89,7 +89,7 @@ class SiteController extends \yii\web\Controller
 
         if ($matchUrl) {
             $matchUrl->counted();
-            $this->redirect($matchUrl->long_url)->send();
+            $this->redirect($matchUrl->long_url, 301)->send();
             return true;
         }
     }
