@@ -12,9 +12,7 @@ $this->title = Yii::$app->name;
 <div class="site-index">
     <div class="body-content">
 
-
-        <?php Pjax::begin(); ?>
-        <?php $form = ActiveForm::begin(['id' => 'url-form', 'options' => ['data-pjax' => true]]); ?>
+        <?php $form = ActiveForm::begin(['id' => 'url-form']); ?>
         <div class="row">
             <div class="col-lg-6">
                 <?= $form->field($urlForm, 'long_url')->textInput(['autofocus' => true]) ?>
@@ -35,6 +33,5 @@ $this->title = Yii::$app->name;
         </div>
 
         <?php ActiveForm::end(); ?>
-        <?php Pjax::end(); ?>
     </div>
 </div>

@@ -71,7 +71,7 @@ $config = [
                 'GET /stats' => 'site/stats',
                 'POST /api/v1/create' => 'api1/rest/create',
                 '/api/v1/stats' => 'api1/rest/stats',
-                'HEAD, GET /<url:[a-zA-Z0-9_-]+>' => 'site/match',
+                'GET,HEAD /<url:[a-zA-Z0-9_-]+>' => 'site/match',
             ],
         ],
         /* Укорачиватель ссылок на основе счетчика
